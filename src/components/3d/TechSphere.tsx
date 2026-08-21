@@ -27,7 +27,7 @@ const Word: React.FC<WordProps> = ({ text, position, color }) => {
           sounds.playHover();
         }}
         onMouseLeave={() => setHovered(false)}
-        className={`px-3.5 py-2 rounded-full text-xs font-mono font-bold transition-all duration-300 cursor-pointer select-none whitespace-nowrap shadow-xl ${
+        className={`px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all duration-300 cursor-pointer select-none whitespace-nowrap shadow-xl ${
           hovered
             ? 'scale-125 bg-cyan-500 text-black border border-white shadow-[0_0_25px_#06b6d4]'
             : 'bg-slate-900/90 text-slate-100 border border-slate-700/80 backdrop-blur-md hover:border-cyan-400'
@@ -44,7 +44,7 @@ const Word: React.FC<WordProps> = ({ text, position, color }) => {
 
 const CloudGroup: React.FC = () => {
   const groupRef = useRef<THREE.Group>(null);
-  const radius = 3.3; // Prominently enlarged radius
+  const radius = 3.2;
 
   // Compute spherical coordinates distribution
   const words = useMemo(() => {
@@ -77,20 +77,7 @@ const CloudGroup: React.FC = () => {
 
   return (
     <group ref={groupRef}>
-      {/* Central Wireframe Polyhedron - Enlarged */}
-      <mesh>
-        <icosahedronGeometry args={[2.5, 1]} />
-        <meshStandardMaterial
-          wireframe
-          color="#38bdf8"
-          emissive="#0284c7"
-          emissiveIntensity={0.2}
-          transparent
-          opacity={0.35}
-        />
-      </mesh>
-
-      {/* Nodes in 3D space */}
+      {/* Floating 3D Skill Tag Nodes (Wireframe Skeleton Removed) */}
       {words.map((w, idx) => (
         <Word key={idx} text={w.text} position={w.position} color={w.color} />
       ))}
@@ -100,10 +87,10 @@ const CloudGroup: React.FC = () => {
 
 export const TechSphere: React.FC = () => {
   return (
-    <div className="w-full h-[480px] sm:h-[540px] relative rounded-2xl overflow-hidden glass-card border border-cyan-500/30 shadow-[0_0_40px_rgba(6,182,212,0.15)]">
-      <div className="absolute top-4 left-4 z-10">
-        <span className="px-3.5 py-1.5 text-xs font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 rounded-full backdrop-blur-md shadow-md">
-          3D Interactive Globe (Drag to rotate 360°)
+    <div className="w-full h-[320px] xs:h-[360px] sm:h-[420px] lg:h-[480px] relative rounded-2xl overflow-hidden glass-card border border-cyan-500/30 shadow-[0_0_40px_rgba(6,182,212,0.15)]">
+      <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
+        <span className="px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-xs font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 rounded-full backdrop-blur-md shadow-md">
+          3D Interactive Cloud (Drag 360°)
         </span>
       </div>
 
